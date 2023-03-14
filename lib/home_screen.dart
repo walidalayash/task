@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
       final title = TextEditingController();
       final subTitle = TextEditingController();
+      final subTitle1 = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
