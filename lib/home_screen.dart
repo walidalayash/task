@@ -95,22 +95,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 });
           }),
-      body: ListView.builder(
-                        itemCount: tasks.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(tasks[index].title),
-                            subtitle: Text(tasks[index].subTitle ?? ''),
-                            trailing: Checkbox(
-                                value: tasks[index].isDone,
-                                onChanged: (value) {
-                                  setState(() {
-                                    tasks[index].isDone = !tasks[index].isDone;
-                                  });
-                               }),
-                          );
-                        })
+      body: DefaultTabController(
+        length: 2,
+        child: Column(
+          children: [
+         const TabBar(
+          labelColor:Colors.green,
+          unselectedLabelColor:Colors.black,
+              tabs: [
+              Tab(
+                text: 'Done',
+                
+              ),
+              Tab(
+                text: 'WAITING',
+              ),
+            ]),
+            Expanded(
+              child:TabBarView(
+                children:[ ListView.builder(
+                          itemCount: tasks.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(tasks[index].title),
+                              subtitle: Text(tasks[index].subTitle ?? ''),
+                              trailing: Checkbox(
+                                  value: tasks[index].isDone,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      tasks[index].isDone = !tasks[index].isDone;
+                                    });
+                                 }),
+                            );
+                          }),
+                           const Center(
+                  child: Text('WEAITNTG'),
+                )
+             ]   )
+            )
+          ])
     
-    );
+    ));
   }
 }
