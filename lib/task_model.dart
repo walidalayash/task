@@ -6,6 +6,6 @@ class TaskModel {
   TaskModel({
     required this.title,
      this.subTitle,
-    this.isDone = false,
+     this.isDone = false,
   });
 }

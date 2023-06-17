@@ -9,7 +9,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<dynamic> w=[];
   List<TaskModel> tasks = [
     TaskModel(title: 'Flutter'),
     TaskModel(title: 'API'),
@@ -20,11 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
       final title = TextEditingController();
       final subTitle = TextEditingController();
-      final subTitle1 = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title:Center(child: Text("walid"))
+        title:const Center(child: Text("Task"))
       ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
@@ -113,10 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ]),
             Expanded(
               child:TabBarView(
-                children:[ ListView.builder(
+                children:[
+                   ListView.builder(
                           itemCount: tasks.length,
                           itemBuilder: (context, index) {
-                            return ListTile(
+                            return
+                            tasks[index].isDone==true?
+                             ListTile(
                               title: Text(tasks[index].title),
                               subtitle: Text(tasks[index].subTitle ?? ''),
                               trailing: Checkbox(
@@ -126,11 +127,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                       tasks[index].isDone = !tasks[index].isDone;
                                     });
                                  }),
-                            );
+                            )
+                            :Container();
                           }),
-                           const Center(
-                  child: Text('WEAITNTG'),
-                )
+                          ///
+                          ListView.builder(
+                          itemCount: tasks.length,
+                          itemBuilder: (context, index) {
+                            return
+                            tasks[index].isDone==false?
+                             ListTile(
+                              title: Text(tasks[index].title),
+                              subtitle: Text(tasks[index].subTitle ?? ''),
+                              trailing: Checkbox(
+                                  value: tasks[index].isDone,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      tasks[index].isDone = !tasks[index].isDone;
+                                    });
+                                 }),
+                            )
+                            :Container();
+                          }),
              ]   )
             )
           ])
