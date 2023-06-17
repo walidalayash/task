@@ -137,7 +137,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             return
                             tasks[index].isDone==false?
                              ListTile(
-                              title: Text(tasks[index].title),
+                              title: InkWell(child: Text(tasks[index].title),
+                              onTap: () {
+                                setState(() {
+                                tasks.removeAt(index);
+
+                                });
+                              },),
                               subtitle: Text(tasks[index].subTitle ?? ''),
                               trailing: Checkbox(
                                   value: tasks[index].isDone,
