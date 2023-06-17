@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
-import 'new_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,12 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
  
       ),
-      home: const ActivityPage(),
+      home: const HomeScreen(),
     );
   }
 }
-//  git init
-//  git add .
-//  git commit -m "new"
-//  git remote add origin https://github.com/walidalayash/dev
-//  git push -u origin master
